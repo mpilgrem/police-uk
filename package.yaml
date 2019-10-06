@@ -1,0 +1,54 @@
+name:                police-uk
+description:         Haskell bindings to the UK Home Office's Police API
+version:             0.1.0.0
+github:              "mpilgrem/police-uk"
+license:             BSD3
+author:              "Mike Pilgrem"
+maintainer:          "public@pilgrem.com"
+copyright:           "2019 Mike Pilgrem"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson
+- attoparsec
+- attoparsec-iso8601
+- http-client
+- http-client-tls
+- servant >= 0.16
+- servant-client >= 0.16
+- text
+- time >= 1.9
+- vector-sized
+- unordered-containers
+
+flags:
+  example:
+    description: Build an example application
+    manual: true
+    default: false
+
+library:
+  source-dirs: src
+  ghc-options:
+  - -Wall
+  - -O2
+
+executables:
+  police-uk-example:
+    when:
+    - condition: "!flag(example)"
+      buildable: false
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -Wall
+    - -O2
+    dependencies:
+    - police-uk

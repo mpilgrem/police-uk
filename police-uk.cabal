@@ -1,0 +1,84 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a66199961fe754e1ba3ff07f0fe09cfe2b9a043e6cf481070346fedb90845d4e
+
+name:           police-uk
+version:        0.1.0.0
+description:    Haskell bindings to the UK Home Office's Police API
+homepage:       https://github.com/mpilgrem/police-uk#readme
+bug-reports:    https://github.com/mpilgrem/police-uk/issues
+author:         Mike Pilgrem
+maintainer:     public@pilgrem.com
+copyright:      2019 Mike Pilgrem
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/mpilgrem/police-uk
+
+flag example
+  description: Build an example application
+  manual: True
+  default: False
+
+library
+  exposed-modules:
+      Data.Time.Calendar.YearMonth
+      Web.UK.Police
+      Web.UK.Police.Types
+      Web.UK.Police.Types.CrimesCategory
+      Web.UK.Police.Types.EWTForce
+      Web.UK.Police.Types.OutcomeCategory
+  other-modules:
+      Paths_police_uk
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -O2
+  build-depends:
+      aeson
+    , attoparsec
+    , attoparsec-iso8601
+    , base >=4.7 && <5
+    , http-client
+    , http-client-tls
+    , servant >=0.16
+    , servant-client >=0.16
+    , text
+    , time >=1.9
+    , unordered-containers
+    , vector-sized
+  default-language: Haskell2010
+
+executable police-uk-example
+  main-is: Main.hs
+  other-modules:
+      Paths_police_uk
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -O2
+  build-depends:
+      aeson
+    , attoparsec
+    , attoparsec-iso8601
+    , base >=4.7 && <5
+    , http-client
+    , http-client-tls
+    , police-uk
+    , servant >=0.16
+    , servant-client >=0.16
+    , text
+    , time >=1.9
+    , unordered-containers
+    , vector-sized
+  if !flag(example)
+    buildable: False
+  default-language: Haskell2010
