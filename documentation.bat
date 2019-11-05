@@ -25,6 +25,7 @@ Echo:
 standalone-haddock ^
 -o%dest-dir% ^
 --hyperlink-source ^
+--quickjump ^
 -v3 ^
 --compiler-exe=%compiler-exe% ^
 --dist-dir=%dist-dir% ^
